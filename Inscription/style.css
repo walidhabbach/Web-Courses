@@ -1,0 +1,41 @@
+ 
+body{
+ 
+     background-image: url('img2.png');
+     background-repeat: no-repeat; 
+     background-position:top 45px right 220px;
+     background-size: 700px 700px;
+  
+} 
+.Container{
+    margin-top: 110px;
+    margin-left: 100px;
+    margin-left: 300px;
+}
+label{
+    margin-top: 8px;
+    margin-bottom: 8px; 
+}
+input[type="submit"]{
+    margin-top: 10px;  
+}
+input[type="password"]{
+    
+    width: 550px; 
+}
+form{
+    padding: 30px 70px;
+    border:solid 1px rgba(221, 221, 221, 0.925);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.931);
+    height: auto;
+    width:max-content;  
+}
+
+#Username-field,#Email-field,#First-Password-field,#Second-Password-field{
+    display: none; 
+    color:rgba(252, 26, 26, 0.816);
+}
+#Message{
+    display: none;
+}
