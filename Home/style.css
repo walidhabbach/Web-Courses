@@ -1,19 +1,38 @@
+body{
+     padding-bottom:50px;
+}
 .Main-Section{
-    
-     min-height: 80vh;
-     
-     background-image: url('clement-helardot-md.jpg') ;
+     min-height:  65vh;
+     background:linear-gradient(rgba(20, 20, 20, 0.4),rgba(0, 0, 0, 0.4)), url('images/altumcode-md.jpg') ;
      background-repeat:no-repeat; 
      background-size: 100% 80%;  
+     background-attachment: fixed;
+     background-position:top; 
 
-     background-position: top center; 
+     display: flex;
+     justify-content: center; 
+}
+.Main-Section h2{ 
+}
+section{
+      display:flex;
+      justify-content: center; 
+      align-items: center;
+      text-align: center; 
 
 }
 .Container-Home{ 
-     min-height: 60vh;
-     padding: 30px;
-     background-color :rgba(20, 20, 20, 0.4); 
-    /*box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.5);*/
-   
-     
+    margin-top: 130px;
+    /*box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.5);*/   
+}
+.navbar{
+     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.navbar .nav-link{
+     font-size: 15px;
+     text-transform: uppercase;
+     letter-spacing: 1px;
+}
+.navbar-light .nav-link.active{
+     color: black;
 }
