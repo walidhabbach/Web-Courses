@@ -1,0 +1,20 @@
+.Main-Section{
+    
+     min-height: 120vh;
+     background-image: url('clement-helardot-md.jpg') ;
+     background-repeat:no-repeat; 
+     background-size: 100% 80%;  
+     padding:40px;
+     background-position: top center; 
+
+}
+.Container-Home{
+
+     padding: 30px;
+     background-color :rgba(20, 20, 20, 0.5); 
+     color: white;
+     border-radius: 15px;
+     box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.5);
+   
+     
+}
