@@ -31,15 +31,17 @@ document.querySelector('.Submit').addEventListener('click',(event)=>{
     valid = EmailValidation();
 
     valid = PasswordValidation();
-
-        let formData = new FormData();
-        formData.append('Email',Email.value);
-        formData.append('Username',Username.value);
-        formData.append('Password',FirstPassword.value); 
+    
+    if(valid){
+        let data = {
+            "Email": Email.value.trim();
+            "Username": Username.value.trim(),
+            "Password": FirstPassword.value
+        }; 
         // Send the FormData object as an AJAX request
         var xhr = new XMLHttpRequest();
         xhr.open('POST','SignUp.php');
-        xhr.send(formData); 
+        xhr.send(data); 
         //clear fields:
 
         setTimeout(() => {
@@ -51,6 +53,8 @@ document.querySelector('.Submit').addEventListener('click',(event)=>{
         Message.textContent = "";
         Message.style.backgroundColor = "none";
         Message.style.display="none";
+    }
+
 
 });
 
