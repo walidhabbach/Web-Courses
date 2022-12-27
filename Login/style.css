@@ -1,17 +1,26 @@
-
+body{
+    background:linear-gradient(rgba(20, 20, 20, 0.4),rgba(0, 0, 0, 0.4)), url('/Web-Courses/images/christopher-gower.jpg') ; 
+    background-repeat:no-repeat; 
+    background-size: 100% 100%;  
+    background-attachment: fixed;
+    background-position:top; 
+}
 .Container{
-    margin-top: 110px;  
+     display: flex;
+     justify-content: center;
+     margin-top: 20vh; 
 }
 label{
     margin-top: 8px;
     margin-bottom: 8px; 
 }
  
-form{
-    padding: 50px 70px;
+form{ 
+    
+   /*padding: 50px 70px;*/
     border:solid 1px rgba(221, 221, 221, 0.925);
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.931);
+    background-color: rgba(255, 255, 255, 0.842);
     height: auto;
-    width: 550px;  
+    width: auto;  
 }

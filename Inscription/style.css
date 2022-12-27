@@ -8,8 +8,7 @@ body{
   
 } 
 .Container{
-    margin-top: 110px;
-    margin-left: 100px;
+    margin-top: 110px; 
     margin-left: 300px;
 }
 label{

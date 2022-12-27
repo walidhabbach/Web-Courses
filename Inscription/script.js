@@ -21,7 +21,7 @@ Username.addEventListener('onchange',(event)=>{
 
 document.querySelector('.Submit').addEventListener('click',(event)=>{
      
-    let valid = true;  
+    var valid = true;  
     event.preventDefault();
 
     ClearValidationErrors();
@@ -31,28 +31,42 @@ document.querySelector('.Submit').addEventListener('click',(event)=>{
     valid = EmailValidation();
 
     valid = PasswordValidation();
-    console.log("cq");
+
     if(valid){
-        let data = {
-            "Email": Email.value.trim(),
-            "Username": Username.value.trim(),
-            "Password": FirstPassword.value
+        let userData = {
+            Email: Email.value.trim(),
+            Username: Username.value.trim(),
+            Password: FirstPassword.value
         }; 
-        // Send the FormData object as an AJAX request
+
+        // Send the Data object as an AJAX request
         var xhr = new XMLHttpRequest();
         xhr.open('POST','SignUp.php');
-        xhr.send(data); 
-        //clear fields:
+        // Set the function to run when the response is received
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // The request was successful. Do something with the response.
+                let responce= xhr.responseText;
+                
+                if(responce=='exist'){
+                     Message.className = "alert alert-danger";
+                     document.querySelector(".alert-heading").innerHTML = "Email already exist!";
+                }else if(responce=='created'){
+                     Message.className = "alert alert-success";
+                     document.querySelector(".alert-heading").innerHTML = "Your account has been successfully created";
+                }
+                 
+                Message.style.display = "block";
+            } else {
+                // There was an error with the request
+                console.log('Error: ' + xhr.status);
+            }
+        };
 
-        setTimeout(() => {
-             let response = xhr.responseText;
-             Message.innerHTML = response;
-             Message.style.backgroundColor = "rgb(124, 250, 124)";
-             Message.style.display="block";
-        },2);
-        Message.textContent = "";
-        Message.style.backgroundColor = "none";
-        Message.style.display="none";
+       
+         xhr.setRequestHeader('Content-Type', 'application/json');
+         xhr.send(JSON.stringify(userData));  
+
     }
 
 
@@ -148,5 +162,8 @@ function ClearValidationErrors(){
      Email_field.style.display='none';
      FirstPassword_field.style.display='none';
      SecondPassword_field.style.display='none';
+
+     document.querySelector(".alert-heading").innerHTML = '';
+     Message.style.display = "none";
 }
 

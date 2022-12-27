@@ -15,10 +15,6 @@ var SecondPassword_field = document.getElementById("Second-Password-field");
 
 
 
-Username.addEventListener('onchange',(event)=>{
-
-});
-
 
 document.querySelector('.Submit').addEventListener('click',(event)=>{
      

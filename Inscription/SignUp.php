@@ -1,29 +1,41 @@
 <?php
-    
-    $Conx = mysqli_connect("localhost","root","","webcourses_db");
-     // Connect to the database mysqli_real_escape_string($dbc, trim($_POST['Email']));
+     session_start();
+   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $Username = $_POST['Username'];
-        $Email = $_POST['Email'];   
-        $Password = $_POST['Password'];
-    if($Conx==false){
-        echo "error conx";
-    }else{
+        $userData = json_decode(file_get_contents('php://input'), true);
 
-         $Query = "SELECT * FROM users WHERE email = '$Email' ";
-         $result = mysqli_query($Conx, $select);
+        $Conx = mysqli_connect("localhost","root","","webcourses_db");
+         // Connect to the database mysqli_real_escape_string($dbc, trim($_POST['Email']));
+         $Username = $userData['Username'];
+         $Email = $userData['Email'];   
+         $Password = $userData['Password'];  
 
-        if(mysqli_num_rows($result) > 0){
-            echo "Email already exist!";
+        if($Conx==false){
+             echo "error conx";
         }else{
-            if(mysqli_query($Conx,"INSERT INTO users (USERNAME, EMAIL, USER_PASSWORD) VALUES ('$Username', '$Email', '$Password')")){
-                echo "Your account has been successfully created";
-            }
-        }
 
-        $Conx->close();
-    }
-   // $Result = mysqli_query($Conx, "SELECT * FROM USERS WHERE EMAIL = '$Email'");
+             $Query = "SELECT * FROM users WHERE email = '$Email' ";
+             $result = mysqli_query($Conx, $Query);
+                
+            if(mysqli_num_rows($result) > 0){
+                 echo "exist";
+            }else{
+                if(mysqli_query($Conx,"INSERT INTO users (USERNAME, EMAIL, USER_PASSWORD) VALUES ('$Username', '$Email', '$Password')")){
+                     $result = mysqli_query($Conx,"SELECT * FROM users where IDUSER =(SELECT MAX(IDUSER) from users);");
+                     $row = mysqli_fetch_assoc($result);
+                     
+                     $_SESSION['IDUSER'] = $row['IDUSER'] ;
+                     $_SESSION['USERNAME'] = $row['USERNAME'] ;
+
+                     echo "created";
+                }else{}
+            }
+
+            $Conx->close();
+        }
+        // $Result = mysqli_query($Conx, "SELECT * FROM USERS WHERE EMAIL = '$Email'"); walid@3d
+   }
+    
  
 
 ?>

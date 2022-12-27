@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
-<body>
+<body onload="addCourses()">
   <!--<section>
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
             <div class="container-fluid">
@@ -37,7 +37,7 @@
         <nav class="navbar navbar-expand-sm navbar-light bg-light ">
           <div class="container ms-5">
               <a class="navbar-brand mb-0 h1" href="#">
-                  <img src="images/bootstrap-logo.svg" alt="Bootstrap" width="30" height="30" class="d-inline-block align-top">
+                  <img src="/Web-Courses/images/bootstrap-logo.svg" alt="Bootstrap" width="30" height="30" class="d-inline-block align-top">
                   <span class="hidden">Bootstrap</span>
               </a>
               <button 
@@ -55,7 +55,7 @@
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-sm-auto ms-2 text-left mb-0 ">
                   <li class="nav-item active  ">
-                      <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                      <a class="nav-link active" aria-current="page" href="http://localhost:83/ProjetJs/Web-Courses/index.html">Home</a>
                   </li>
                   <li class="nav-item dropdown active  ">
                       <a class="nav-link dropdown-toggle" 
@@ -95,12 +95,12 @@
      </main>
     
     <section class="mt-5">  
-      <div>
+ 
         <h1>/ Courses :</h1>
         <div class="row cols-lg-3 cols-md-6 justify-content-center mt-3 ">
             <div class="col mt-3">
               <div class="card shadow" style="width:18rem;height:35vh;">
-                  <img src="courses/htmlBasics.png"  style="height:100%;" class="card-img-top" alt="...">
+                  <img src="http://localhost:83/ProjetJs/Web-Courses/courses/htmlBasics.png"  style="height:100%;" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">HTML</h5>
                       <p class="card-text">$9.9</p>
@@ -109,7 +109,7 @@
             </div>               
             <div class="col mt-3">
                 <div class="card shadow " style="width:18rem;height:35vh;">
-                  <img src="courses/javascriptDOM.png" style="height:100%;" class="card-img-top" alt="...">
+                  <img src="http://localhost:83/ProjetJs/Web-Courses/courses/javascriptDOM.png" style="height:100%;" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">JS</h5>
                       <p class="card-text">$19.9</p>
@@ -118,7 +118,7 @@
             </div>
             <div class="col mt-3">
                 <div class="card shadow " style="width:18rem;height:35vh;">
-                  <img src="courses/cssSelectors.jpg" style="height:100%;"class="card-img-top" alt="...">
+                  <img src="http://localhost:83/ProjetJs/Web-Courses/courses/cssSelectors.jpg" style="height:100%;"class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">CSS</h5>
                       <p class="card-text">$10</p>
@@ -127,27 +127,20 @@
             </div>
             <div class="col mt-3">
                 <div class="card shadow" style="width:18rem;height:35vh;">
-                    <img src="courses/phpBasics.png" style="height:100%;"class="card-img-top" alt="...">
+                    <img src="http://localhost:83/ProjetJs/Web-Courses/courses/phpBasics.png" style="height:100%;"class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">CSS</h5>
                       <p class="card-text">$29.9</p>
                     </div>
                 </div>
-            </div>
-    
-                
-        
- 
-                
-           
-              
+            </div> 
        
         </div>
         <br>
         <input class="btn btn-primary w-25 " value="All Courses" type="button">
-     </div>      
+     
     </section>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-
+      <script src="script.js"></script>
 </body>
 </html>

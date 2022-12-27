@@ -2,13 +2,14 @@ var content = document.querySelector('.content');
 
 function creationCours(path, title, price) {
     let div = document.createElement('div'); // <div></div>
-    div.setAttribute('class', 'card col-3 me-2 mb-2'); //<div class="card col-3 me-2 mb-2 "></div>
+    div.setAttribute('class', 'card shadow col-md-3  col-sm-12 me-3 mb-3 text-center'); //<div class="card col-3 me-2 mb-2 "></div>
     let img = document.createElement('img'),
         p = document.createElement('p'),
         span = document.createElement('span');
 
     img.src = path;
-    img.setAttribute('class', 'card-img');
+    img.style.height='80%';
+    img.setAttribute('class', 'card-img-top');
     p.appendChild(document.createTextNode(title));
     p.setAttribute('class', 'card-title');
     span.appendChild(document.createTextNode(price));
