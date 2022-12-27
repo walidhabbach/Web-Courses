@@ -17,8 +17,7 @@
             echo "Email already exist!";
         }else{
             if(mysqli_query($Conx,"INSERT INTO users (USERNAME, EMAIL, USER_PASSWORD) VALUES ('$Username', '$Email', '$Password')")){
-                echo'Your account has been successfully created';
-                 
+                echo "Your account has been successfully created";
             }
         }
 
