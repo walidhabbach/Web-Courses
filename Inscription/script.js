@@ -31,10 +31,10 @@ document.querySelector('.Submit').addEventListener('click',(event)=>{
     valid = EmailValidation();
 
     valid = PasswordValidation();
-    
+    console.log("cq");
     if(valid){
         let data = {
-            "Email": Email.value.trim();
+            "Email": Email.value.trim(),
             "Username": Username.value.trim(),
             "Password": FirstPassword.value
         }; 

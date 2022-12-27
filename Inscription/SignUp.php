@@ -15,12 +15,10 @@
 
         if(mysqli_num_rows($result) > 0){
             echo "Email already exist!";
-
-
         }else{
             if(mysqli_query($Conx,"INSERT INTO users (USERNAME, EMAIL, USER_PASSWORD) VALUES ('$Username', '$Email', '$Password')")){
-                $response = 'Your account has been successfully created';
-                echo json_encode($response);
+                echo'Your account has been successfully created';
+                 
             }
         }
 
