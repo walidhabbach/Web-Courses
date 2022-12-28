@@ -1,5 +1,5 @@
 body{
-    background:linear-gradient(rgba(20, 20, 20, 0.4),rgba(0, 0, 0, 0.4)), url('/Web-Courses/images/christopher-gower.jpg') ; 
+    background:linear-gradient(rgba(20, 20, 20, 0.4),rgba(0, 0, 0, 0.4)), url('http://localhost:82/ProjetJs/Web-Courses/images2/christopher-gower.jpg') ; 
     background-repeat:no-repeat; 
     background-size: 100% 100%;  
     background-attachment: fixed;
@@ -23,4 +23,7 @@ form{
     background-color: rgba(255, 255, 255, 0.842);
     height: auto;
     width: auto;  
+}
+#Message{
+    display: none;
 }

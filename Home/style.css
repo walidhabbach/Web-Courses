@@ -2,8 +2,8 @@ body{
      padding-bottom: 120px;
 }
 .Main-Section{
-     min-height:  65vh;
-     background:linear-gradient(rgba(20, 20, 20, 0.4),rgba(0, 0, 0, 0.4)), url('http://localhost:83/ProjetJs/Web-Courses/images/altumcode-md.jpg') ;
+     min-height: 65vh;
+     background:linear-gradient(rgba(20, 20, 20, 0.4),rgba(0, 0, 0, 0.4)), url('http://localhost:82/ProjetJs/Web-Courses/images2/altumcode-md.jpg');
      background-repeat:no-repeat; 
      background-size: 100% 80%;  
      background-attachment: fixed;
@@ -12,8 +12,7 @@ body{
      display: flex;
      justify-content: center; 
 }
-.Main-Section h2{ 
-}
+
 section{
       display:flex;
       justify-content: center; 

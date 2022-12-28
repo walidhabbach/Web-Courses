@@ -50,8 +50,13 @@ document.querySelector('.Submit').addEventListener('click',(event)=>{
                 let responce= xhr.responseText;
                 
                 if(responce=='exist'){
-                     Message.className = "alert alert-danger";
-                     document.querySelector(".alert-heading").innerHTML = "Email already exist!";
+                     setTimeout(() => {
+                        Message.className = "alert alert-danger";
+                        document.querySelector(".alert-heading").innerHTML = "Email already exist!";
+                    },2);
+
+                    window.location.assign("http://localhost:82/ProjetJs/Web-Courses/Home/index.html");
+
                 }else if(responce=='created'){
                      Message.className = "alert alert-success";
                      document.querySelector(".alert-heading").innerHTML = "Your account has been successfully created";
@@ -64,7 +69,7 @@ document.querySelector('.Submit').addEventListener('click',(event)=>{
             }
         };
 
-       
+
          xhr.setRequestHeader('Content-Type', 'application/json');
          xhr.send(JSON.stringify(userData));  
 

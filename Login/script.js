@@ -1,44 +1,52 @@
-var regex = /^[a-zA-Z0-9]+$/; 
-var EmailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
- 
-
-var Username = document.getElementsByName('Username')[0];  
 var Email = document.getElementsByName('Email')[0];  
-var FirstPassword = document.getElementsByName('First-Password')[0];  
-var SecondPassword = document.getElementsByName('Second-Password')[0];  
-
-var Username_field = document.getElementById("Username-field");
-var Email_field = document.getElementById("Email-field");
-var FirstPassword_field = document.getElementById("First-Password-field");
-var SecondPassword_field = document.getElementById("Second-Password-field");
-
-
+var Password = document.getElementsByName('Password')[0];   
 
 
 document.querySelector('.Submit').addEventListener('click',(event)=>{
      
-    let valid = true;  
     event.preventDefault();
 
-
-    let formData = new FormData();
-    formData.append('Email',Email.value);
-    formData.append('Username',Username.value);
-    formData.append('Password',FirstPassword.value); 
+    let userData = {
+        Email: Email.value.trim(),
+        Password: Password.value
+    }; 
     // Send the FormData object as an AJAX request
     var xhr = new XMLHttpRequest();
-    xhr.open('POST','SignUp.php');
-    xhr.send(formData); 
+    xhr.open('POST','http://localhost:82/ProjetJs/Web-Courses/Login/Login.php');
+      
     //clear fields:
+    xhr.onload = function() {
 
-    setTimeout(() => {
-         let response = xhr.responseText;
-         Message.innerHTML = response;
-         Message.style.backgroundColor = "rgb(124, 250, 124)";
-         Message.style.display="block";
-    },2);
-    Message.textContent = "";
+        if (xhr.status === 200) {
+            let response = xhr.responseText;
+            console.log(response);
+            Message.style.display="block";
+            if(response=='not exist'){
+                Message.className = "alert alert-danger";
+                document.querySelector(".alert-heading").innerHTML = "Your password is incorrect or this account doesn't exist.";
+            }
+            else if(response=='exist'){
+            
+                setTimeout(() => {
+                        Message.className = "alert alert-success";
+                        document.querySelector(".alert-heading").innerHTML = "Your account has been successfully created";
+                       
+                },2);
+
+                window.location.assign("http://localhost:82/ProjetJs/Web-Courses/Home/index.html");
+
+            }else{
+                Message.className = "alert alert-danger";
+                document.querySelector(".alert-heading").innerHTML = response;
+            }
+         }
+    }
+    console.log(userData);
+     xhr.setRequestHeader('Content-Type', 'application/json');
+     xhr.send(JSON.stringify(userData)); 
+
+    Message.innerHTML = "";
     Message.style.backgroundColor = "none";
     Message.style.display="none";
 

@@ -2,13 +2,16 @@ var content = document.querySelector('.content');
 
 function creationCours(path, title, price) {
     let div = document.createElement('div'); // <div></div>
-    div.setAttribute('class', 'card shadow col-md-3  col-sm-12 me-3 mb-3 text-center'); //<div class="card col-3 me-2 mb-2 "></div>
+    div.setAttribute('class', 'card shadow  col-md-3 me-1 mb-3 text-center'); //<div class="card col-3 me-2 mb-2 "></div>
     let img = document.createElement('img'),
-        p = document.createElement('p'),
-        span = document.createElement('span');
+    p = document.createElement('h5'),
+    span = document.createElement('p');
 
-    img.src = path;
-    img.style.height='80%';
+    img.src = "http://localhost:82/ProjetJs/Web-Courses"+path;
+    img.style.height='100%';
+   
+    div.style.height = "35vh";
+    div.style.width = "15rem"; 
     img.setAttribute('class', 'card-img-top');
     p.appendChild(document.createTextNode(title));
     p.setAttribute('class', 'card-title');
@@ -22,12 +25,32 @@ function creationCours(path, title, price) {
     content.append(div);
 }
 
-courses.forEach(function(element) {
-    creationCours(element.image, element.title, element.price)
-})
-
 
 var list = document.querySelector('#categories');
+
+function addCourses(){
+
+    let Query =  "SELECT * FROM courses;";
+    // Send the FormData object as an AJAX request
+    var xhr = new XMLHttpRequest();
+    
+      xhr.open('GET','http://localhost:82/ProjetJs/Web-Courses/Home/GetCourses.php');   
+      xhr.send();   
+         xhr.onload = function() {
+            if (xhr.status == 200) { 
+                var data = JSON.parse(xhr.responseText);
+                console.log(data);
+                //IDCOURSE, IMG_URL , TITLE, PRICE
+                for (let i = 0; i < 19; i++) {
+                    creationCours(data[i].IMG_URL, data[i].TITLE, data[i].PRICE);   
+                }
+
+            }
+           
+        }
+
+}
+
 
 function creationCategory() {
     var tab = courses.map(function(v) { return v.category.toUpperCase() });
