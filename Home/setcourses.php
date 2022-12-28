@@ -13,13 +13,10 @@
          $url = $userData['url'];  
 
         if($Conx==false){
-             echo "error conx";
+             //echo "error conx";
         }else{
 
             if(mysqli_query($Conx,"INSERT INTO courses (IMG_URL, TITLE, PRICE,category) VALUES ('$url', '$TITLE', '$PRICE','$category')")){
-                    
-                echo "added";
-
             }    
             $Conx->close();
         }

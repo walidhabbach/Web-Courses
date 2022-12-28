@@ -6,11 +6,11 @@ function creationCours(path, title, price) {
         p = document.createElement('p'),
         span = document.createElement('span');
 
-    img.src = path;
-    img.style.height='80%';
-
+    img.src = "http://localhost:83/ProjetJs/Web-Courses"+path;
+    img.style.height='70%';
+   
     div.style.height = "35vh";
-    div.style.width = "18rem";
+    div.style.width = "15rem";
 
     img.setAttribute('class', 'card-img-top');
     p.appendChild(document.createTextNode(title));
@@ -47,8 +47,10 @@ function addCourses(){
                 var data = JSON.parse(xhr.responseText);
                 console.log(data);
                 //IDCOURSE, IMG_URL , TITLE, PRICE
-                creationCours(data[2].IMG_URL, data[2].TITLE, data[2].PRICE);
-          
+                for (let i = 0; i < 2; i++) {
+                    creationCours(data[i].IMG_URL, data[i].TITLE, data[i].PRICE);   
+                }
+
             }
            
         }
@@ -70,16 +72,17 @@ function setCourses(){
   
         // Set the function to run when the response is received
 
-         for (let i = 0; i < courses.length; i++) {
+         for (let i = 0; i < 1; i++) {
            
             Data.url = courses[i].image;
             Data.TITLE =  courses[i].title;
             Data.PRICE = courses[i].price;
             Data.category = courses[i].category;
 
-            xhr.open('POST','setcourses.php');
+            xhr.open('POST','http://localhost:83/ProjetJs/Web-Courses/Home/setcourses.php');
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify(Data));  
+            
         }
 
 
