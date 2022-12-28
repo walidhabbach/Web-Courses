@@ -37,6 +37,7 @@ document.querySelector('.Submit').addEventListener('click',(event)=>{
             Email: Email.value.trim(),
             Username: Username.value.trim(),
             Password: FirstPassword.value
+   
         }; 
 
         // Send the Data object as an AJAX request

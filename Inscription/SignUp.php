@@ -10,6 +10,7 @@
          $Email = $userData['Email'];   
          $Password = $userData['Password'];  
 
+
         if($Conx==false){
              echo "error conx";
         }else{
@@ -21,14 +22,14 @@
                  echo "exist";
             }else{
                 if(mysqli_query($Conx,"INSERT INTO users (USERNAME, EMAIL, USER_PASSWORD) VALUES ('$Username', '$Email', '$Password')")){
-                     $result = mysqli_query($Conx,"SELECT * FROM users where IDUSER =(SELECT MAX(IDUSER) from users);");
+                     $result = mysqli_query($Conx,"SELECT * FROM users where IDUSER = (SELECT MAX(IDUSER) from users);");
                      $row = mysqli_fetch_assoc($result);
                      
                      $_SESSION['IDUSER'] = $row['IDUSER'] ;
                      $_SESSION['USERNAME'] = $row['USERNAME'] ;
 
                      echo "created";
-                }else{}
+                }  
             }
 
             $Conx->close();
