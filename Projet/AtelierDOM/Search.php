@@ -1,16 +1,25 @@
 <?php
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 
     // Connect to the database mysqli_real_escape_string($dbc, trim($_POST['Email']));
         // connect to the database
 
-        $Query = "SELECT IDCOURSE, IMG_URL , TITLE, PRICE , CATEGORY FROM courses;";
+        $Data = json_decode(file_get_contents('php://input'), true);
+
+      
+         // Connect to the database mysqli_real_escape_string($dbc, trim($_POST['Email']));
+    
+ 
+       // $Query = "SELECT * FROM courses where  TITLE like 'w%' ;";
+      
+      
         $Conx = mysqli_connect("localhost","root","","webcourses_db");
       
-       
+        echo json_encode($Data);
         // fetch data from the database
-        $result = mysqli_query($Conx, $Query);
+        $result = mysqli_query($Conx, $Data);
 
         // create an array to store the data
 
@@ -28,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
             echo $json_data;
         } else echo json_encode("empty",JSON_PRETTY_PRINT);
      
-      
+
         // output the JSON data object as a JavaScript object 
         //echo "| ".$data["IDCOURSE"]." | ".$data["IMAGE"]." | ".$data["TITLE"]." | ".$data["PRICE"]." |";
      

@@ -2,17 +2,20 @@ var regex = /^[a-zA-Z0-9]+$/;
 var EmailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
  
-var Username = document.getElementsByName('Username')[0];  
-var Email = document.getElementsByName('Email')[0];  
-var FirstPassword = document.getElementsByName('First-Password')[0];  
-var SecondPassword = document.getElementsByName('Second-Password')[0];  
+let Username = document.getElementsByName('Username')[0];  
+let Email = document.getElementsByName('Email')[0];  
+let FirstPassword = document.getElementsByName('First-Password')[0];  
+let SecondPassword = document.getElementsByName('Second-Password')[0];  
 
-var Username_field = document.getElementById("Username-field");
-var Email_field = document.getElementById("Email-field");
-var FirstPassword_field = document.getElementById("First-Password-field");
-var SecondPassword_field = document.getElementById("Second-Password-field");
+let Username_field = document.getElementById("Username-field");
+let Email_field = document.getElementById("Email-field");
+let FirstPassword_field = document.getElementById("First-Password-field");
+let SecondPassword_field = document.getElementById("Second-Password-field");
 
-var Message=document.getElementById("Message");
+let Message=document.getElementById("Message");
+
+var Validation = true;  
+
 
 Username.addEventListener('onchange',(event)=>{
 
@@ -21,18 +24,18 @@ Username.addEventListener('onchange',(event)=>{
 
 document.querySelector('.Submit').addEventListener('click',(event)=>{
      
-    var valid = true;  
+   
     event.preventDefault();
 
     ClearValidationErrors();
 
-    valid = UserNameValidation();
+    Validation = UserNameValidation();
 
-    valid = EmailValidation();
+    Validation = EmailValidation();
 
-    valid = PasswordValidation();
+    Validation = PasswordValidation();
 
-    if(valid){
+    if(Validation){
         let userData = {
             Email: Email.value.trim(),
             Username: Username.value.trim(),
@@ -77,7 +80,7 @@ document.querySelector('.Submit').addEventListener('click',(event)=>{
 
 
 });
-
+ 
 function UserNameValidation(){
     let valid = true;
     if(Username.value.trim() == "" || Username.value == null){
@@ -152,7 +155,7 @@ function PasswordValidation(){
     if(FirstPassword.value != SecondPassword.value){
         Valid = false;
         SecondPassword_field.style.display = "block";
-        SecondPassword_field.innerHTML = "Password do Not match";
+        SecondPassword_field.innerHTML = "Make sure your passwords match";
     }
     
     return Valid;

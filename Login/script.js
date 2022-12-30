@@ -1,6 +1,6 @@
 
-var Email = document.getElementsByName('Email')[0];  
-var Password = document.getElementsByName('Password')[0];   
+let Email = document.getElementsByName('Email')[0];  
+let Password = document.getElementsByName('Password')[0];   
 
 
 document.querySelector('.Submit').addEventListener('click',(event)=>{

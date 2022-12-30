@@ -36,19 +36,28 @@ function addCourses(){
       xhr.send();   
          xhr.onload = function() {
             if (xhr.status == 200) { 
-                var data = JSON.parse(xhr.responseText);
-                console.log(data);
-                //IDCOURSE, IMG_URL , TITLE, PRICE
-                for (let i = 10; i < 14; i++) {
-                    creationCours(data[i].IMG_URL, data[i].TITLE, data[i].PRICE);   
-                }
+                let Indexs = [];
+                let index ;
+                let count = 1;
+                let data = JSON.parse(xhr.responseText);
+                while(count<=4){
+                    //to avoid displaying the same course
+                     do{
+                         index = getRandomInt(0, data.length-1);
+                     }while(Indexs.includes(index));
 
+                     creationCours(data[index].IMG_URL, data[index].TITLE, data[index].PRICE);   
+                     Indexs.push(index);
+                     count++;  
+                }  
             }
            
         }
 
 }
-
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * max) + min;
+  }
 // function setCourses(){
 
 //         // Send the Data object as an AJAX request
@@ -62,138 +71,138 @@ function addCourses(){
  
 // }
 
-var courses = [{
-    url_image: '/images/javascriptDef.png',
-    title: 'what is javascript?',
-    category: 'JS',
-    price: 9.9,
-    image : new Image("http://localhost:82/ProjetJs/Web-Courses/images/javascriptDef.png")
+// var courses = [{
+//     url_image: '/images/javascriptDef.png',
+//     title: 'what is javascript?',
+//     category: 'JS',
+//     price: 9.9,
+//     image : new Image("http://localhost:82/ProjetJs/Web-Courses/images/javascriptDef.png")
 
-},
-{
-    url_image: '/images/htmlBasics.PNG',
-    title: 'basics of HTML',
-    category: 'HTML',
-    price: 5.9,
-    image : new Image('http://localhost:82/ProjetJs/Web-Courses/images/htmlBasics.PNG')
-},
-{
-    url_image: '/images/htmlElements.png',
-    title: 'HTML elements and tags',
-    category: 'HTML',
-    price: 9.9,
-    image : new Image('/Web-Courses/images/htmlElements.png')
-},
-{
-    url_image: '/images/cssSelectors.jpg',
-    title: 'CSS selectors',
-    category: 'CSS',
-    price: 69.9,
-    image : new Image('/Web-Courses/images/cssSelectors.jpg')
-},
-{
-    url_image: '/images/javascriptVariables.png',
-    title: 'variables and data type of javascript',
-    category: 'JS',
-    price: 19.9,
-    image : new Image('/Web-Courses/images/javascriptVariables.png')
-},
-{
-    url_image: '/images/javascriptOperators.png',
-    title: 'Javascript operators and conditions',
-    category: 'JS',
-    price: 29.9,
-    image : new Image('/Web-Courses/images/javascriptOperators.png')
-},
-{
-    url_image: '/images/htmlAttrVal.jpg',
-    title: 'HTML attributes and values',
-    category: 'HTML',
-    price: 19.9,
-    image : new Image( '/Web-Courses/images/htmlAttrVal.jpg')
-},
-{
-    url_image: '/images/cssProperties.png',
-    title: 'CSS properties',
-    category: 'CSS',
-    price: 29.9,
-    image : new Image('/Web-Courses/images/cssProperties.png')
-},
-{
-    url_image: '/images/javascriptObjects.png',
-    title: 'Javascript objects and arrays',
-    category: 'JS',
-    price: 39.9,
-    image : new Image('/Web-Courses/images/javascriptObjects.png')
-},
-{
-    url_image: '/images/cssMesures.png',
-    title: 'mesures and unites of CSS',
-    category: 'CSS',
-    price: 19.9,
-    image : new Image( '/Web-Courses/images/cssMesures.png')
-},
-{
-    url_image: '/images/cssAnimation.png',
-    title: 'CSS animations',
-    category: 'CSS',
-    price: 19.9,
-    image : new Image('/Web-Courses/images/cssAnimation.png')
-},
-{
-    url_image: '/images/javascriptFunctions.png',
-    title: 'The basics of javascript',
-    category: 'JS',
-    price: 29.9,
-    image : new Image('/Web-Courses/images/javascriptFunctions.png')
-},
-{
-    url_image: '/images/javascriptEvents.png',
-    title: 'javascript events',
-    category: 'JS',
-    price: 59.9,
-    image : new Image('/Web-Courses/images/javascriptEvents.png')
-},
-{
-    url_image: '/images/cssColors.png',
-    title: 'css colors',
-    category: 'css',
-    price: 29.9,
-    image : new Image('/Web-Courses/images/cssColors.png')
-},
-{
-    url_image: '/images/phpBasics.png',
-    title: 'getting started with php',
-    category: 'php',
-    price: 15.9,
-    image : new Image('/Web-Courses/images/phpBasics.png')
-},
-{
-    url_image: '/Web-Courses/courses/images/javascriptFunctions2.png',
-    title: 'functions and loops with javascript',
-    category: 'JS',
-    price: 19.9,
-    image : new Image('/Web-Courses/images/javascriptFunctions2.png')
-},
-{
-    url_image: '/images/phpDataBase.png',
-    title: 'connecting to database using PHP',
-    category: 'PHP',
-    price: 29.9,
-    image : new Image('/Web-Courses/images/phpDataBase.png')
-},
-{
-    url_image: '/images/phpCRUD.png',
-    title: 'manipulating crud using php',
-    category: 'php',
-    price: 45.9,
-    image : new Image('/Web-Courses/images/phpCRUD.png')
-},
-{
-    url_image: '/images/javascriptDOM.png',
-    title: 'DOM the power of javascript',
-    category: 'JS',
-    price: 23.9,
-    image : new Image('/Web-Courses/images/javascriptDOM.png')
-}
-]
+// },
+// {
+//     url_image: '/images/htmlBasics.PNG',
+//     title: 'basics of HTML',
+//     category: 'HTML',
+//     price: 5.9,
+//     image : new Image('http://localhost:82/ProjetJs/Web-Courses/images/htmlBasics.PNG')
+// },
+// {
+//     url_image: '/images/htmlElements.png',
+//     title: 'HTML elements and tags',
+//     category: 'HTML',
+//     price: 9.9,
+//     image : new Image('/Web-Courses/images/htmlElements.png')
+// },
+// {
+//     url_image: '/images/cssSelectors.jpg',
+//     title: 'CSS selectors',
+//     category: 'CSS',
+//     price: 69.9,
+//     image : new Image('/Web-Courses/images/cssSelectors.jpg')
+// },
+// {
+//     url_image: '/images/javascriptVariables.png',
+//     title: 'variables and data type of javascript',
+//     category: 'JS',
+//     price: 19.9,
+//     image : new Image('/Web-Courses/images/javascriptVariables.png')
+// },
+// {
+//     url_image: '/images/javascriptOperators.png',
+//     title: 'Javascript operators and conditions',
+//     category: 'JS',
+//     price: 29.9,
+//     image : new Image('/Web-Courses/images/javascriptOperators.png')
+// },
+// {
+//     url_image: '/images/htmlAttrVal.jpg',
+//     title: 'HTML attributes and values',
+//     category: 'HTML',
+//     price: 19.9,
+//     image : new Image( '/Web-Courses/images/htmlAttrVal.jpg')
+// },
+// {
+//     url_image: '/images/cssProperties.png',
+//     title: 'CSS properties',
+//     category: 'CSS',
+//     price: 29.9,
+//     image : new Image('/Web-Courses/images/cssProperties.png')
+// },
+// {
+//     url_image: '/images/javascriptObjects.png',
+//     title: 'Javascript objects and arrays',
+//     category: 'JS',
+//     price: 39.9,
+//     image : new Image('/Web-Courses/images/javascriptObjects.png')
+// },
+// {
+//     url_image: '/images/cssMesures.png',
+//     title: 'mesures and unites of CSS',
+//     category: 'CSS',
+//     price: 19.9,
+//     image : new Image( '/Web-Courses/images/cssMesures.png')
+// },
+// {
+//     url_image: '/images/cssAnimation.png',
+//     title: 'CSS animations',
+//     category: 'CSS',
+//     price: 19.9,
+//     image : new Image('/Web-Courses/images/cssAnimation.png')
+// },
+// {
+//     url_image: '/images/javascriptFunctions.png',
+//     title: 'The basics of javascript',
+//     category: 'JS',
+//     price: 29.9,
+//     image : new Image('/Web-Courses/images/javascriptFunctions.png')
+// },
+// {
+//     url_image: '/images/javascriptEvents.png',
+//     title: 'javascript events',
+//     category: 'JS',
+//     price: 59.9,
+//     image : new Image('/Web-Courses/images/javascriptEvents.png')
+// },
+// {
+//     url_image: '/images/cssColors.png',
+//     title: 'css colors',
+//     category: 'css',
+//     price: 29.9,
+//     image : new Image('/Web-Courses/images/cssColors.png')
+// },
+// {
+//     url_image: '/images/phpBasics.png',
+//     title: 'getting started with php',
+//     category: 'php',
+//     price: 15.9,
+//     image : new Image('/Web-Courses/images/phpBasics.png')
+// },
+// {
+//     url_image: '/Web-Courses/courses/images/javascriptFunctions2.png',
+//     title: 'functions and loops with javascript',
+//     category: 'JS',
+//     price: 19.9,
+//     image : new Image('/Web-Courses/images/javascriptFunctions2.png')
+// },
+// {
+//     url_image: '/images/phpDataBase.png',
+//     title: 'connecting to database using PHP',
+//     category: 'PHP',
+//     price: 29.9,
+//     image : new Image('/Web-Courses/images/phpDataBase.png')
+// },
+// {
+//     url_image: '/images/phpCRUD.png',
+//     title: 'manipulating crud using php',
+//     category: 'php',
+//     price: 45.9,
+//     image : new Image('/Web-Courses/images/phpCRUD.png')
+// },
+// {
+//     url_image: '/images/javascriptDOM.png',
+//     title: 'DOM the power of javascript',
+//     category: 'JS',
+//     price: 23.9,
+//     image : new Image('/Web-Courses/images/javascriptDOM.png')
+// }
+// ]
