@@ -16,11 +16,7 @@ let Message = document.getElementById("Message");
 
 var Validation = true;  
 
-
-Username.addEventListener('onchange',(event)=>{
-
-});
-
+ 
 
 document.querySelector('.Submit').addEventListener('click',(event)=>{
      

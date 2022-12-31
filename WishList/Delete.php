@@ -8,8 +8,7 @@
 
         if($Conx==false){
              echo "error conx";
-        }else{ 
-            $IdUser =$_SESSION['IDUSER'] ;
+        }else{  
             if(mysqli_query($Conx,"DELETE FROM  wishlist where IDCOURSE = $IdCourse ;")){
                  echo "deleted";
             }else{

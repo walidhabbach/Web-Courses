@@ -11,9 +11,16 @@ let Data = [];
 //         document.querySelector("."+parentId+" .text").style.visibility = "visible";
 //     } 
 // });
+document.querySelector(".LogOut").addEventListener("click",()=>{
 
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST','http://localhost:82/ProjetJs/Web-Courses/Inscription/Session.php'); 
+    xhr.send();
+    window.location.assign("http://localhost:82/ProjetJs/Web-Courses/Login/index.html"); 
+
+});
 content.addEventListener('click', (event)=>{
- 
+    console.log(event.target.parentNode.id);
     if(!isNaN(parseInt(event.target.parentNode.id))){
         let id = parseInt(event.target.parentNode.id); 
         console.log(parseInt(id));

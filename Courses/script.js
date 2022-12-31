@@ -4,6 +4,18 @@ let PriceRange=document.getElementById('Price-Range');
 let list = document.querySelector('#categories');  
 let Data = []; 
 
+
+
+
+
+document.querySelector(".LogOut").addEventListener("click",()=>{
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST','http://localhost:82/ProjetJs/Web-Courses/Inscription/Session.php'); 
+    xhr.send();
+    window.location.assign("http://localhost:82/ProjetJs/Web-Courses/Login/index.html"); 
+
+});
 content.addEventListener('click', (event)=>{
 
     if(!isNaN(parseInt(event.target.parentNode.id))){
@@ -129,6 +141,9 @@ function GetAllCourses(){
                 PriceRange.max = Math.max(...Data.map(course => course.PRICE));
                 PriceRange.min = Math.min(...Data.map(course => course.PRICE));
                
+                PriceRange.value = Math.max(...Data.map(course => course.PRICE));
+                document.getElementById('valPrice').innerHTML = PriceRange.value;
+                 
             }
         }
         console.log(content);
@@ -140,7 +155,7 @@ function SearchByPriceRange(){
         if(PriceRange.value >= parseFloat(Data[i].PRICE)){
              creationCours(parseInt(Data[i].IDCOURSE),Data[i].IMG_URL, Data[i].TITLE, Data[i].PRICE);   
         }   
-    }
+    } 
 }
 function SearchByTitle(){
     content.innerHTML='';
@@ -148,7 +163,7 @@ function SearchByTitle(){
         if(Data[i].TITLE.toLocaleLowerCase().includes(Search.value)){
              creationCours(parseInt(Data[i].IDCOURSE),Data[i].IMG_URL, Data[i].TITLE, Data[i].PRICE);   
         }
-    } 
+    }  
 }
 function SearchByCategory(category){
     content.innerHTML='';

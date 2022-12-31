@@ -27,7 +27,14 @@ function creationCours(path, title, price) {
     document.querySelector('.All_Courses').append(div);
 }
 
+document.querySelector(".LogOut").addEventListener("click",()=>{
 
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST','http://localhost:82/ProjetJs/Web-Courses/Inscription/Session.php'); 
+    xhr.send();
+    window.location.assign("http://localhost:82/ProjetJs/Web-Courses/Login/index.html"); 
+
+});
 function addCourses(){
 
     let Query =  "SELECT * FROM courses;";
