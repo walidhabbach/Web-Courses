@@ -33,7 +33,7 @@ document.querySelector('.Submit').addEventListener('click',(event)=>{
                      Message.className = "alert alert-success";
                      setTimeout(function() {
                         window.location.assign("http://localhost:82/ProjetJs/Web-Courses/Home/index.html");  
-                      }, 2000);
+                      }, 500);
                       
              
             }else{

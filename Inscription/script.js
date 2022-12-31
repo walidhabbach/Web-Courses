@@ -58,7 +58,9 @@ document.querySelector('.Submit').addEventListener('click',(event)=>{
                          Message.className = "alert alert-success";
                          document.querySelector(".alert-heading").innerHTML = "Your account has been successfully created";
                  
-                     window.location.assign("http://localhost:82/ProjetJs/Web-Courses/Home/index.html");
+                         setTimeout(function() {
+                            window.location.assign("http://localhost:82/ProjetJs/Web-Courses/Home/index.html");  
+                          }, 500);
                  }else{
                     Message.className = "alert alert-danger";
                     document.querySelector(".alert-heading").innerHTML =  xhr.responseText;
