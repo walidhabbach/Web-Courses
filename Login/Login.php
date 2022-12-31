@@ -7,32 +7,33 @@
         // Connect to the database mysqli_real_escape_string($dbc, trim($_POST['Email']));
 
 
-        $Email = $userData['Email'];   
-        $Password = $userData['Password']; 
         if($Conx==false){
             echo "error conx";
-        }else{
-            $Command = mysqli_query($Conx,"Select IDUSER from users where EMAIL='$Email' and USER_PASSWORD='$Password';");
-            if($Command){
-                 $result = mysqli_query($Conx,"SELECT * FROM users where IDUSER = (SELECT MAX(IDUSER) from users);");
-                 $row = mysqli_fetch_assoc($result);
-                 $_SESSION['IDUSER'] = $row['IDUSER'] ;
-                 $_SESSION['USERNAME'] = $row['USERNAME'] ; 
-                 
-                echo "exist";   
+       }else{
+            $Email = $userData['Email'];   
+            $Password = $userData['Password']; 
+           
+                $Command = mysqli_query($Conx,"Select IDUSER, USERNAME,EMAIL, USER_PASSWORD from users where EMAIL='$Email' and USER_PASSWORD='$Password';");
+                if(mysqli_num_rows($Command) == 1){  
 
-            }else{
-                echo"not exist";  
+                    while ($row = mysqli_fetch_assoc($Command)) {
+                        $_SESSION['IDUSER'] = $row['IDUSER'] ;
+                        $_SESSION['USERNAME'] = $row['USERNAME'] ; 
+                    }
+                    echo "exist";   
+
+                }else{
+                    echo"not exist";  
+                }    
+                
             }
             
             $Conx->close();
         }
-
      
          
     // $Result = mysqli_query($Conx, "SELECT * FROM USERS WHERE EMAIL = '$Email'");
-    
-    }
+     
     
 
 ?>

@@ -12,7 +12,7 @@ let Email_field = document.getElementById("Email-field");
 let FirstPassword_field = document.getElementById("First-Password-field");
 let SecondPassword_field = document.getElementById("Second-Password-field");
 
-let Message=document.getElementById("Message");
+let Message = document.getElementById("Message");
 
 var Validation = true;  
 
@@ -45,27 +45,30 @@ document.querySelector('.Submit').addEventListener('click',(event)=>{
 
         // Send the Data object as an AJAX request
         var xhr = new XMLHttpRequest();
-        xhr.open('POST','SignUp.php');
+        xhr.open('POST','http://localhost:82/ProjetJs/Web-Courses/Inscription/SignUp.php');
         // Set the function to run when the response is received
         xhr.onload = function() {
-            if (xhr.status === 200) {
+            if (xhr.status === 200) { 
                 // The request was successful. Do something with the response.
                 let responce= xhr.responseText;
-                
+       
                 if(responce=='exist'){
-                     setTimeout(() => {
+                  
                         Message.className = "alert alert-danger";
                         document.querySelector(".alert-heading").innerHTML = "Email already exist!";
-                    },2);
-
-                    window.location.assign("http://localhost:82/ProjetJs/Web-Courses/Home/index.html");
-
+        
                 }else if(responce=='created'){
-                     Message.className = "alert alert-success";
-                     document.querySelector(".alert-heading").innerHTML = "Your account has been successfully created";
-                }
+                   
+                         Message.className = "alert alert-success";
+                         document.querySelector(".alert-heading").innerHTML = "Your account has been successfully created";
                  
-                Message.style.display = "block";
+                     window.location.assign("http://localhost:82/ProjetJs/Web-Courses/Home/index.html");
+                 }else{
+                    Message.className = "alert alert-danger";
+                    document.querySelector(".alert-heading").innerHTML =  xhr.responseText;
+                 }
+                 
+                 Message.style.display = "block";
             } else {
                 // There was an error with the request
                 console.log('Error: ' + xhr.status);

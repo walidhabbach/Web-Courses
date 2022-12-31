@@ -1,0 +1,31 @@
+
+.text {
+    position: absolute; /* position the text absolutely */
+    top: 50%; /* position the text vertically centered */
+    left: 50%; /* position the text horizontally centered */
+    transform: translate(-50%, -50%); /* center the text within the card */
+    color: white ;/* make the text color white */
+    text-align: center; /* center the text within the card */
+    visibility: hidden; /* initially hide the text */
+    font-size: larger;
+    font-family:  sans-serif;
+  }
+ 
+  .content div:hover .text {
+     visibility: visible; /* show the text when hovering over the card */
+     height: 100%;
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+  }
+  .content div:hover { 
+  
+     background: rgba(0, 0, 0, 0.6); 
+   
+  }
+  .content div:hover p , .content div:hover h5{
+    display: none;
+  }
+   
+  

@@ -1,22 +1,24 @@
 
 function creationCours(path, title, price) {
     let div = document.createElement('div'); // <div></div>
-    div.setAttribute('class', 'card shadow col-md-3  col-sm-12 me-3 mb-3 text-center'); //<div class="card col-3 me-2 mb-2 "></div>
+    div.setAttribute('class', 'card shadow me-3 mb-3 text-center'); //<div class="card col-3 me-2 mb-2 "></div>
     let img = document.createElement('img'),
 
     titlefield = document.createElement('h5'),
     pricefield = document.createElement('span');
     img.src = "http://localhost:82/ProjetJs/Web-Courses"+path;
     img.style.height='100%';
-   
-    div.style.height = "35vh";
-    div.style.width = "15rem";
+ 
+    
+    div.style.height = "32vh";
+    div.style.width = "17rem"; 
+    
 
     img.setAttribute('class', 'card-img-top');
     titlefield.appendChild(document.createTextNode(title));
-    titlefield.setAttribute('class', 'card-title');
+    titlefield.setAttribute('class', 'card-title mt-2');
     pricefield.appendChild(document.createTextNode(price+'$'));
-    pricefield.setAttribute('class', 'card-text');
+    pricefield.setAttribute('class', 'card-text mb-2');
 
     div.appendChild(img);
     div.appendChild(titlefield);

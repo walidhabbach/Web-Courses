@@ -1,7 +1,7 @@
 
 let Email = document.getElementsByName('Email')[0];  
 let Password = document.getElementsByName('Password')[0];   
-
+let Message = document.getElementById("Message"); 
 
 document.querySelector('.Submit').addEventListener('click',(event)=>{
      
@@ -22,33 +22,37 @@ document.querySelector('.Submit').addEventListener('click',(event)=>{
             let response = xhr.responseText;
             console.log(response);
             Message.style.display="block";
+
             if(response=='not exist'){
                 Message.className = "alert alert-danger";
                 document.querySelector(".alert-heading").innerHTML = "Your password is incorrect or this account doesn't exist.";
-            }
+            } 
             else if(response=='exist'){
-            
-                setTimeout(() => {
-                        Message.className = "alert alert-success";
-                        document.querySelector(".alert-heading").innerHTML = "Your account has been successfully created";
-                       
-                },2);
-
-                window.location.assign("http://localhost:82/ProjetJs/Web-Courses/Home/index.html");
-
+              
+                     document.querySelector(".alert-heading").innerHTML = "Logged in successfully"; 
+                     Message.className = "alert alert-success";
+                     setTimeout(function() {
+                        window.location.assign("http://localhost:82/ProjetJs/Web-Courses/Home/index.html");  
+                      }, 2000);
+                      
+             
             }else{
                 Message.className = "alert alert-danger";
-                document.querySelector(".alert-heading").innerHTML = response;
+                alertheading.innerHTML = response;
             }
-         }
+      
+        }
     }
     console.log(userData);
      xhr.setRequestHeader('Content-Type', 'application/json');
      xhr.send(JSON.stringify(userData)); 
 
+
+});
+
+function Clear(){
     Message.innerHTML = "";
     Message.style.backgroundColor = "none";
     Message.style.display="none";
 
-});
-
+}

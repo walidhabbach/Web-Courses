@@ -4,6 +4,20 @@ let PriceRange=document.getElementById('Price-Range');
 let list = document.querySelector('#categories');  
 let Data = []; 
 
+content.addEventListener('click', (event)=>{
+
+    if(!isNaN(parseInt(event.target.parentNode.id))){
+        let id = parseInt(event.target.parentNode.id); 
+        console.log(parseInt(id));
+        if (confirm("Do you want to add this course to your wish list!")) {
+            AddToWishList(parseInt(id));
+        }
+        
+    }
+    
+});
+
+
 list.addEventListener("click",(event)=>{
 
     if(event.target.id=='Category_Click'){
@@ -25,30 +39,55 @@ PriceRange.addEventListener("change",()=>{
     SearchByPriceRange();
 });
 
-function creationCours(path, title, price) {
+
+
+Search.addEventListener("keyup",()=>{
+    content.innerHTML='';
+    if(Search.value!=''){
+        SearchByTitle();
+    }else{
+        GetAllCourses();
+    } 
+    
+});
+
+
+function creationCours(id,path, title, price) {
     let div = document.createElement('div'); // <div></div>
+
+    div.setAttribute('id',parseInt(id)); 
     div.setAttribute('class', 'card shadow  col-md-3 ms-3 mb-3 text-center'); //<div class="card col-3 me-2 mb-2 "></div>
     let img = document.createElement('img'),
     p = document.createElement('h5'),
     span = document.createElement('p');
 
     img.src = "http://localhost:82/ProjetJs/Web-Courses"+path;
-    img.style.height='100%';
-   
-    div.style.height = "35vh";
-    div.style.width = "15rem"; 
+    img.style.height='100%'; 
+    img.style.width ='100%'; 
+    
+    div.style.height = "34vh";
+    div.style.width = "18rem"; 
+
     img.setAttribute('class', 'card-img-top');
     p.appendChild(document.createTextNode(title));
-    p.setAttribute('class', 'card-title');
-    span.appendChild(document.createTextNode(price));
+    p.setAttribute('class', 'card-title mt-2');
+    span.appendChild(document.createTextNode(price+"$"));
     span.setAttribute('class', 'card-text');
 
     div.appendChild(img);
     div.appendChild(p);
     div.appendChild(span);
 
-    content.append(div);
+
+    let div2 = document.createElement('div');
+    div2.className = "text";
+    div2.innerHTML = "Add To Wishlist";
+
+    div.appendChild(div2);
+
+    content.append(div); 
 }
+
 
 
 function SortByPrice() {
@@ -84,7 +123,7 @@ function GetAllCourses(){
                 //IDCOURSE, IMG_URL , TITLE, PRICE
                 for (let i = 0; i < Data.length; i++) {
                     
-                    creationCours(Data[i].IMG_URL, Data[i].TITLE, Data[i].PRICE);   
+                    creationCours(parseInt(Data[i].IDCOURSE),Data[i].IMG_URL, Data[i].TITLE, Data[i].PRICE);   
                 }
                 LoadCategory();
                 PriceRange.max = Math.max(...Data.map(course => course.PRICE));
@@ -92,13 +131,14 @@ function GetAllCourses(){
                
             }
         }
+        console.log(content);
 
 }
 function SearchByPriceRange(){
     content.innerHTML='';
     for (let i = 0; i < Data.length; i++) {   
         if(PriceRange.value >= parseFloat(Data[i].PRICE)){
-             creationCours(Data[i].IMG_URL, Data[i].TITLE, Data[i].PRICE);   
+             creationCours(parseInt(Data[i].IDCOURSE),Data[i].IMG_URL, Data[i].TITLE, Data[i].PRICE);   
         }   
     }
 }
@@ -106,7 +146,7 @@ function SearchByTitle(){
     content.innerHTML='';
     for (let i = 0; i < Data.length; i++) {
         if(Data[i].TITLE.toLocaleLowerCase().includes(Search.value)){
-             creationCours(Data[i].IMG_URL, Data[i].TITLE, Data[i].PRICE);   
+             creationCours(parseInt(Data[i].IDCOURSE),Data[i].IMG_URL, Data[i].TITLE, Data[i].PRICE);   
         }
     } 
 }
@@ -114,31 +154,51 @@ function SearchByCategory(category){
     content.innerHTML='';
     for (let i = 0; i < Data.length; i++) {
          if(Data[i].CATEGORY.toLocaleLowerCase() == category.toLocaleLowerCase()){
-            creationCours(Data[i].IMG_URL, Data[i].TITLE, Data[i].PRICE);   
+            creationCours(parseInt(Data[i].IDCOURSE),Data[i].IMG_URL, Data[i].TITLE, Data[i].PRICE);   
         }
     }
-    console.log(category);
+   
 }
 function SearchByTitle_Category(category){
     content.innerHTML='';
     for (let i = 0; i < Data.length; i++) {
          if(Data[i].CATEGORY.toLocaleLowerCase() == category.toLocaleLowerCase() && Data[i].TITLE.toLocaleLowerCase().includes(Search.value)){
-            creationCours(Data[i].IMG_URL, Data[i].TITLE, Data[i].PRICE);   
+            creationCours(parseInt(Data[i].IDCOURSE),Data[i].IMG_URL, Data[i].TITLE, Data[i].PRICE);   
         }
     }
-    console.log(category);
-}
-Search.addEventListener("keyup",()=>{
-    content.innerHTML='';
-    if(Search.value!=''){
-        SearchByTitle();
-    }else{
-        GetAllCourses();
-    } 
     
-});
+}
 
- 
+
+function AddToWishList(IdCourse){
+    // Send the Data object as an AJAX request
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST','http://localhost:82/ProjetJs/Web-Courses/WishList/Add.php');
+    // Set the function to run when the response is received
+    xhr.onload = function() {
+        if (xhr.status === 200) { 
+            // The request was successful. Do something with the response.
+            let responce= xhr.responseText;
+   
+            if(responce=="inserted"){
+                 alert("inserted");
+            }else if(responce=="Not inserted"){
+                alert("Not inserted");
+             }else{
+                alert(xhr.responseText); ;
+             }
+             
+        } else {
+            // There was an error with the request
+            console.log('Error: ' + xhr.status);
+        }
+    };
+
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send('IdCourse=' + IdCourse);  
+
+}
+
 function LoadCategory() {
     list.innerHTML='';
     let tab = Data.map(function(element) { return element.CATEGORY.toUpperCase() });
@@ -154,6 +214,6 @@ function LoadCategory() {
         li.appendChild(a);
         list.append(li); 
      }) 
-     console.log(list);
+  
    
 }
