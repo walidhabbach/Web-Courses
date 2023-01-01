@@ -5,21 +5,28 @@
         $Conx = mysqli_connect("localhost","root","","webcourses_db");
 
          $IdCourse = intval($_POST["IdCourse"]);
+         $IdUser =$_SESSION['IDUSER'] ;
 
         if($Conx==false){
              echo "error conx";
-        }else{ 
-            $IdUser =$_SESSION['IDUSER'] ;
-            if(mysqli_query($Conx,"INSERT INTO wishlist (IDCOURSE,IDUSER) VALUES ('$IdCourse', '$IdUser')")){
-                 echo "inserted";
+        }else{  
+
+            $Command = mysqli_query($Conx,"Select IDUSER, IDCOURSE from wishlist where IDCOURSE = '$IdCourse' and IDUSER = '$IdUser' ;");
+            if(mysqli_num_rows($Command) == 0){
+               if(mysqli_query($Conx,"INSERT INTO wishlist (IDCOURSE,IDUSER) VALUES ('$IdCourse', '$IdUser')")){
+                    echo "inserted";
+               }else{
+                   echo "Not inserted";
+               }  
+
             }else{
-                echo "Not inserted";
-            }     
+               echo "Already exist in your wish list";
+            }
+
+              
             $Conx->close();
         }
-        // $Result = mysqli_query($Conx, "SELECT * FROM USERS WHERE EMAIL = '$Email'"); walid@3d
-   }
-    
- 
+       
+   } 
 
 ?>

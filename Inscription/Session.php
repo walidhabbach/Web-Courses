@@ -4,4 +4,5 @@
 
   // Destroy the session
   session_destroy();
+  
 ?>

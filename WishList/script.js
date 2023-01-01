@@ -11,13 +11,14 @@ let Data = [];
 //         document.querySelector("."+parentId+" .text").style.visibility = "visible";
 //     } 
 // });
+
 document.querySelector(".LogOut").addEventListener("click",()=>{
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST','http://localhost:82/ProjetJs/Web-Courses/Inscription/Session.php'); 
-    xhr.send();
-    window.location.assign("http://localhost:82/ProjetJs/Web-Courses/Login/index.html"); 
-
+    if (confirm("Are you sure want to logout ?")) {  
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST','http://localhost:82/ProjetJs/Web-Courses/Inscription/Session.php'); 
+        xhr.send();
+        window.location.assign("http://localhost:82/ProjetJs/Web-Courses/Login/index.html"); 
+    }
 });
 content.addEventListener('click', (event)=>{
     console.log(event.target.parentNode.id);
@@ -69,13 +70,10 @@ Search.addEventListener("keyup",()=>{
 
 
 function DeleteFromWishList(IdCourse){
-    // Send the Data object as an AJAX request
     var xhr = new XMLHttpRequest();
     xhr.open('POST','http://localhost:82/ProjetJs/Web-Courses/WishList/Delete.php');
-    // Set the function to run when the response is received
     xhr.onload = function() {
         if (xhr.status === 200) { 
-            // The request was successful. Do something with the response.
             let responce= xhr.responseText;
    
             if(responce=="deleted"){
@@ -85,13 +83,10 @@ function DeleteFromWishList(IdCourse){
              }else{
                 alert(xhr.responseText); ;
              }
-             
         } else {
-            // There was an error with the request
             console.log('Error: ' + xhr.status);
         }
     };
-
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send('IdCourse=' + IdCourse);  
 

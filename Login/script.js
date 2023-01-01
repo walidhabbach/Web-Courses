@@ -10,12 +10,10 @@ document.querySelector('.Submit').addEventListener('click',(event)=>{
     let userData = {
         Email: Email.value.trim(),
         Password: Password.value
-    }; 
-    // Send the FormData object as an AJAX request
+    };  
     var xhr = new XMLHttpRequest();
     xhr.open('POST','http://localhost:82/ProjetJs/Web-Courses/Login/Login.php');
       
-    //clear fields:
     xhr.onload = function() {
 
         if (xhr.status === 200) {
@@ -33,9 +31,7 @@ document.querySelector('.Submit').addEventListener('click',(event)=>{
                      Message.className = "alert alert-success";
                      setTimeout(function() {
                         window.location.assign("http://localhost:82/ProjetJs/Web-Courses/Home/index.html");  
-                      }, 500);
-                      
-             
+                      }, 500); 
             }else{
                 Message.className = "alert alert-danger";
                 alertheading.innerHTML = response;
@@ -46,7 +42,6 @@ document.querySelector('.Submit').addEventListener('click',(event)=>{
     console.log(userData);
      xhr.setRequestHeader('Content-Type', 'application/json');
      xhr.send(JSON.stringify(userData)); 
-
 
 });
 

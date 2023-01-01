@@ -8,13 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 
         $Data = json_decode(file_get_contents('php://input'), true);
 
-      
-         // Connect to the database mysqli_real_escape_string($dbc, trim($_POST['Email']));
-    
- 
-       // $Query = "SELECT * FROM courses where  TITLE like 'w%' ;";
-      
-      
         $Conx = mysqli_connect("localhost","root","","webcourses_db");
       
         echo json_encode($Data);

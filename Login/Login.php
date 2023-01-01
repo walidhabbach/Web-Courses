@@ -3,10 +3,8 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         $userData = json_decode(file_get_contents('php://input'), true);
-        $Conx = mysqli_connect("localhost","root","","webcourses_db");
-        // Connect to the database mysqli_real_escape_string($dbc, trim($_POST['Email']));
-
-
+        $Conx = mysqli_connect("localhost","root","","webcourses_db"); 
+        
         if($Conx==false){
             echo "error conx";
        }else{
@@ -29,11 +27,6 @@
             }
             
             $Conx->close();
-        }
-     
-         
-    // $Result = mysqli_query($Conx, "SELECT * FROM USERS WHERE EMAIL = '$Email'");
-     
-    
+        }  
 
 ?>

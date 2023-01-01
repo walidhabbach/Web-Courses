@@ -14,72 +14,63 @@ let SecondPassword_field = document.getElementById("Second-Password-field");
 
 let Message = document.getElementById("Message");
 
-var Validation = true;  
+
 
  
 
 document.querySelector('.Submit').addEventListener('click',(event)=>{
      
-   
+    let ValidUserName = true;  
+    let ValidEmail = true;  
+    let ValidPassword = true; 
+
     event.preventDefault();
 
     ClearValidationErrors();
 
-    Validation = UserNameValidation();
+    ValidUserName = UserNameValidation();
 
-    Validation = EmailValidation();
+    ValidEmail = EmailValidation();
 
-    Validation = PasswordValidation();
+    ValidPassword = PasswordValidation();
 
-    if(Validation){
+    if(ValidUserName && ValidPassword && ValidEmail && ValidPassword){
         let userData = {
             Email: Email.value.trim(),
             Username: Username.value.trim(),
             Password: FirstPassword.value
    
         }; 
-
-        // Send the Data object as an AJAX request
         var xhr = new XMLHttpRequest();
-        xhr.open('POST','http://localhost:82/ProjetJs/Web-Courses/Inscription/SignUp.php');
-        // Set the function to run when the response is received
+         xhr.open('POST','http://localhost:82/ProjetJs/Web-Courses/Inscription/SignUp.php');
+         xhr.setRequestHeader('Content-Type', 'application/json'); 
+         xhr.send(JSON.stringify(userData));  
+
         xhr.onload = function() {
-            if (xhr.status === 200) { 
-                // The request was successful. Do something with the response.
+            if (xhr.status === 200) {  
                 let responce= xhr.responseText;
        
                 if(responce=='exist'){
-                  
-                        Message.className = "alert alert-danger";
-                        document.querySelector(".alert-heading").innerHTML = "Email already exist!";
-        
+                     Message.className = "alert alert-danger";
+                    document.querySelector(".alert-heading").innerHTML = "Email already exist!";
                 }else if(responce=='created'){
                    
-                         Message.className = "alert alert-success";
-                         document.querySelector(".alert-heading").innerHTML = "Your account has been successfully created";
+                    Message.className = "alert alert-success";
+                    document.querySelector(".alert-heading").innerHTML = "Your account has been successfully created";
                  
-                         setTimeout(function() {
-                            window.location.assign("http://localhost:82/ProjetJs/Web-Courses/Home/index.html");  
-                          }, 500);
+                    setTimeout(function() {
+                        window.location.assign("http://localhost:82/ProjetJs/Web-Courses/Home/index.html");  
+                        }, 500);
                  }else{
                     Message.className = "alert alert-danger";
                     document.querySelector(".alert-heading").innerHTML =  xhr.responseText;
                  }
-                 
                  Message.style.display = "block";
-            } else {
-                // There was an error with the request
+            } else { 
                 console.log('Error: ' + xhr.status);
             }
         };
-
-
-         xhr.setRequestHeader('Content-Type', 'application/json');
-         xhr.send(JSON.stringify(userData));  
-
     }
-
-
 });
  
 function UserNameValidation(){

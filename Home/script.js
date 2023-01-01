@@ -1,18 +1,16 @@
 
 function creationCours(path, title, price) {
-    let div = document.createElement('div'); // <div></div>
-    div.setAttribute('class', 'card shadow me-3 mb-3 text-center'); //<div class="card col-3 me-2 mb-2 "></div>
+    let div = document.createElement('div'); 
+    div.setAttribute('class', 'card shadow me-3 mb-3 text-center'); 
     let img = document.createElement('img'),
 
     titlefield = document.createElement('h5'),
     pricefield = document.createElement('span');
     img.src = "http://localhost:82/ProjetJs/Web-Courses"+path;
     img.style.height='100%';
- 
     
     div.style.height = "32vh";
     div.style.width = "17rem"; 
-    
 
     img.setAttribute('class', 'card-img-top');
     titlefield.appendChild(document.createTextNode(title));
@@ -37,8 +35,6 @@ document.querySelector(".LogOut").addEventListener("click",()=>{
 });
 function addCourses(){
 
-    let Query =  "SELECT * FROM courses;";
-    // Send the FormData object as an AJAX request
     var xhr = new XMLHttpRequest();
     
       xhr.open('GET','http://localhost:82/ProjetJs/Web-Courses/Home/GetCourses.php');   
@@ -49,6 +45,7 @@ function addCourses(){
                 let index ;
                 let count = 1;
                 let data = JSON.parse(xhr.responseText);
+                console.log()
                 while(count<=4){
                     //to avoid displaying the same course
                      do{
@@ -59,10 +56,8 @@ function addCourses(){
                      Indexs.push(index);
                      count++;  
                 }  
-            }
-           
-        }
-
+            } 
+        } 
 }
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * max) + min;

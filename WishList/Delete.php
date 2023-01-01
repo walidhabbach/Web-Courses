@@ -16,7 +16,7 @@
             }     
             $Conx->close();
         }
-        // $Result = mysqli_query($Conx, "SELECT * FROM USERS WHERE EMAIL = '$Email'"); walid@3d
+       
    }
     
  

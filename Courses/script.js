@@ -6,8 +6,6 @@ let Data = [];
 
 
 
-
-
 document.querySelector(".LogOut").addEventListener("click",()=>{
 
     var xhr = new XMLHttpRequest();
@@ -65,10 +63,10 @@ Search.addEventListener("keyup",()=>{
 
 
 function creationCours(id,path, title, price) {
-    let div = document.createElement('div'); // <div></div>
+    let div = document.createElement('div');  
 
     div.setAttribute('id',parseInt(id)); 
-    div.setAttribute('class', 'card shadow  col-md-3 ms-3 mb-3 text-center'); //<div class="card col-3 me-2 mb-2 "></div>
+    div.setAttribute('class', 'card shadow  col-md-3 ms-3 mb-3 text-center'); 
     let img = document.createElement('img'),
     p = document.createElement('h5'),
     span = document.createElement('p');
@@ -120,10 +118,8 @@ function SortByPrice() {
 }
 function GetAllCourses(){
 
-    let Query =  "SELECT * FROM courses;";
-    // Send the FormData object as an AJAX request
+    let Query =  "SELECT * FROM courses;"; 
     var xhr = new XMLHttpRequest();
-
 
       xhr.open('GET','http://localhost:82/ProjetJs/Web-Courses/Home/GetCourses.php');   
       xhr.send();   
@@ -186,13 +182,12 @@ function SearchByTitle_Category(category){
 
 
 function AddToWishList(IdCourse){
-    // Send the Data object as an AJAX request
+ 
     var xhr = new XMLHttpRequest();
     xhr.open('POST','http://localhost:82/ProjetJs/Web-Courses/WishList/Add.php');
-    // Set the function to run when the response is received
+    
     xhr.onload = function() {
-        if (xhr.status === 200) { 
-            // The request was successful. Do something with the response.
+        if (xhr.status === 200) {  
             let responce= xhr.responseText;
    
             if(responce=="inserted"){
@@ -203,8 +198,7 @@ function AddToWishList(IdCourse){
                 alert(xhr.responseText); ;
              }
              
-        } else {
-            // There was an error with the request
+        } else { 
             console.log('Error: ' + xhr.status);
         }
     };

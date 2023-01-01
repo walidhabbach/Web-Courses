@@ -1,15 +1,16 @@
  
 body{
  
-     background-image: url('img2.png');
+     background-image: url('http://localhost:82/ProjetJs/Web-Courses/images2/safar-safarov.jpg');
      background-repeat: no-repeat; 
-     background-position:top 45px right 220px;
-     background-size: 700px 700px;
+     background-position:top 45px left 250px;
+     background-size: 600px 80vh;
+     border-radius: 100%;
   
 } 
 .Container{
-    margin-top: 110px; 
-    margin-left: 300px;
+    margin-top: 150px; 
+    margin-left: 400px;
 }
 label{
     margin-top: 8px;
